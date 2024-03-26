@@ -1,44 +1,44 @@
-const form = document.getElementById('form-deposito');
-const nomeBeneficiario = document.getElementById('nome-beneficiario');
+const form = document.getElementById('form-calcular');
+const numeroX = document.getElementById('numero-x');
+const numeroY = document.getElementById('numero-y');
 let formEValido = false;
 
-function validaNome(nomeCompleto) {
-    const nomeComoArray = nomeCompleto.split(' ');
-    return nomeComoArray.length >= 2;
+function calcular(numero) {
+    numero = numeroX.value > numeroY.value;
+    return numero;
 }
 
 form.addEventListener('submit', function(e) {
     e.preventDefault();
 
-    const numeroContaBeneficiario = document.getElementById('numero-conta');
-    const valorDeposito = document.getElementById('valor-deposito');
-    const mensagemSucesso = `Montante de: <b>${valorDeposito.value}</b> depositado para o cliente: <b>${nomeBeneficiario.value}</b> - conta: <b>${numeroContaBeneficiario.value}</b>`;
+const mensagemSucesso = `O valor: <b>${numeroX.value}</b> é maior que o valor:<b>${numeroX.value}</b>`;
+const mensagemError = `O valor: <b>${numeroX.value}</b> é menor que o valor:<b>${numeroX.value}</b>`;
 
-    formEValido = validaNome(nomeBeneficiario.value)
+    formEValido = calcular(numero.value)
     if (formEValido) {
         const containerMensagemSucesso = document.querySelector('.sucess-message')
         containerMensagemSucesso.innerHTML = mensagemSucesso;
         containerMensagemSucesso.style.display = 'block';
 
-        nomeBeneficiario.value = '';
-        numeroContaBeneficiario.value = '';
-        valorDeposito.value = '';
+        numero.value = '';
+        numeroX.value = '';
+        numeroY.value = '';
     } else {
-        nomeBeneficiario.style.border = '1px solid red';
+        numero.style.border = '1px solid red';
         document.querySelector('.error-message').style.display = 'block';
     }
 })
 
-nomeBeneficiario.addEventListener('keyup', function(e){
+numero.addEventListener('keyup', function(e){
         console.log(e.target.value);
-        formEValido = validaNome(e.target.value);
+        formEValido = calcular(e.target.value);
 
         if (!formEValido) {
-            nomeBeneficiario.classList.add('error');
-            //nomeBeneficiario.style.border = '1px solid red';
+            numero.classList.add('error');
+            //numero.style.border = '1px solid red';
             document.querySelector('.error-message').style.display = 'block';
         } else {
-            nomeBeneficiario.classList.remove('error');
+            numero.classList.remove('error');
             document.querySelector('.error-message').style.display = 'none';
         }
 });

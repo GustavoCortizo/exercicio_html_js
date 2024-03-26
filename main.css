@@ -6,6 +6,7 @@
 }
 
 body {
+    color: #fff;
 }
 
 .container {
@@ -49,11 +50,9 @@ button:hover {
 }
 
 .error-message {
-    font-size: 12px;
-    padding: 8px;
     background-color: red;
+    padding: 16px;
     color: #fff;
-    margin-bottom: 8px;
     display: none;
 }
 
